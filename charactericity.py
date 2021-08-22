@@ -1,6 +1,6 @@
 from appliable import *
 from appliable_stat import *
-
+import numpy as np
 
 def measure_charactericity_for_non_bin(non_binary_h, binary, stat_pics1, stat_pics2):
     # прикидываем условную и безусловную гистограмму non_binary_h
@@ -23,11 +23,19 @@ def measure_charactericity_for_non_bin(non_binary_h, binary, stat_pics1, stat_pi
 
 
 def sample_from_hist(probs, bins, sample_size):
-    pass
-
+    bin_ids =list(range(0, len(probs)))
+    bins_sample = np.random.choice(bin_ids, sample_size, p=probs)
+    sample = []
+    for bin_id in bins_sample:
+        val = np.random.uniform(bins[bin_id],bins[bin_id+1])
+        sample.append(val)
+    return sample
 
 def count_error_btw_two_samples(ground_true, prediction):
-    pass
+    res = 0
+    for i in range(len(ground_true)):
+        res+=(ground_true[i] - prediction[i])**2
+    return res/len(ground_true)
 
 
 def measure_charactericity_for_bin(binary_h, binary, stat_pics):
