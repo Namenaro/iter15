@@ -26,3 +26,11 @@ def apply_binary_unit_to_pic(pic, unit):
             if len(matches) > 0:
                 XYs.append([x,y])
     return XYs
+
+def get_hist(values,nbins):
+    if not isinstance(values, np.ndarray):
+        values = np.array(values)
+    (probs, bins, _) = plt.hist(values, bins=nbins,
+                                    weights=np.ones_like(values) / len(values), range=(0, 255))
+
+    return probs, bins

@@ -26,6 +26,11 @@ class BinaryUnit:
                     matches.append(BinaryMatch(X[i], Y[i]))
         return matches
 
+    def apply2(self, pic, x,y):
+        if len(self.apply(pic,x,y))>0:
+            return True
+        return False
+
 
 class BinaryChainUnit:
     def __init__(self, binary_appliables):
