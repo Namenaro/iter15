@@ -13,7 +13,7 @@ from characteristics_initializer import *
 import random
 
 def get_anchor(pic):
-    etalon = random.uniform(0,255)
+    etalon = random.uniform(0, 255)
     helper_unit = BinaryUnit(u_radius=0, sensor_field_radius=0, etalon=etalon, event_diameter=20, dx=0,dy=0)
     XY = apply_binary_unit_to_pic(pic, helper_unit)
     if len(XY)==0:
@@ -45,8 +45,7 @@ def get_binary_and_characs_for_situation(stat_pics):
     res_characteristics = None
 
     for test_binary in test_binary_units:
-        blacklist = SimpleBlacklist()
-        characteristics, informativness = get_characs_for_binary(etalon_pic, test_binary, x,y, blacklist, stat_pics)
+        characteristics, informativness = get_elementary_characts_around_point(etalon_pic, test_binary, x, y, stat_pics)
 
         if res_informativness is None:
             res_informativness=informativness
@@ -54,7 +53,7 @@ def get_binary_and_characs_for_situation(stat_pics):
             res_characteristics = characteristics
 
         else:
-            if informativness>res_informativness:
+            if informativness > res_informativness:
                 res_informativness = informativness
                 res_binary = test_binary
                 res_characteristics = characteristics
