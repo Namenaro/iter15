@@ -27,10 +27,10 @@ def apply_binary_unit_to_pic(pic, unit):
                 XYs.append([x,y])
     return XYs
 
-def get_hist(values,nbins):
+def get_hist(values,nbins, maxv=255):
     if not isinstance(values, np.ndarray):
         values = np.array(values)
     (probs, bins, _) = plt.hist(values, bins=nbins,
-                                    weights=np.ones_like(values) / len(values), range=(0, 255))
+                                    weights=np.ones_like(values) / len(values), range=(0, maxv))
 
     return probs, bins
